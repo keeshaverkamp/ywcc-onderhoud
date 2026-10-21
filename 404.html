@@ -77,7 +77,7 @@
 (function () {
   // Diepe URL's komen via de server-rewrite op deze pagina binnen.
   // Hier tonen we passende uitleg op basis van het pad.
-  var path = (location.pathname || "/").toLowerCase().replace(/\/+$/, "") || "/";
+  var path = (location.pathname || "/").toLowerCase().replace(/^\/ywcc-onderhoud/, "").replace(/\/+$/, "") || "/";
 
   var routes = [
     { m: /^\/(aanmelden|intake|plan-een-belafspraak-in|actuele-wachttijden|inclusiecriteria)/,
