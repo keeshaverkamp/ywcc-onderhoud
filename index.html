@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- geen noindex op de homepage -->
+<meta name="theme-color" content="#182f44">
+<title>Yes We Can Clinics | Tijdelijk onderhoud</title>
+<style>
+  :root { --navy:#182f44; --ink:#1d2733; --muted:#5b6673; --bg:#f5f7f9; --card:#fff; --accent:#e94e1b; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.55; }
+  header { background:var(--navy); color:#fff; padding:20px 16px; }
+  header .wrap { display:flex; align-items:center; gap:12px; }
+  header img { height:40px; }
+  header strong { font-size:1.15rem; letter-spacing:.3px; }
+  .wrap { max-width:760px; margin:0 auto; }
+  main { padding:32px 16px 48px; }
+  h1 { font-size:1.7rem; margin:0 0 12px; color:var(--navy); }
+  .card { background:var(--card); border-radius:12px; padding:20px 22px; margin:18px 0; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .card h2 { font-size:1.1rem; margin:0 0 8px; color:var(--navy); }
+  .card p { margin:0 0 8px; }
+  .alert { border-left:5px solid var(--accent); }
+  .ctx { display:none; border-left:5px solid var(--navy); }
+  a { color:var(--navy); font-weight:600; }
+  .btn { display:inline-block; background:var(--navy); color:#fff; text-decoration:none; padding:10px 16px; border-radius:8px; margin:4px 8px 4px 0; }
+  .muted { color:var(--muted); font-size:.92rem; }
+  footer { text-align:center; padding:16px; color:var(--muted); font-size:.85rem; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <!-- Logo lokaal meeleveren (niet hotlinken naar de oude server): -->
+    <img src="/logo_yeswecanclinics_nl.svg" alt="" onerror="this.remove()">
+    <strong>Yes We Can Clinics</strong>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Onze website is tijdelijk niet beschikbaar</h1>
+  <p>We voeren op dit moment onderhoud uit aan onze website. Onze zorg en behandeling gaan gewoon door. We zijn telefonisch en via WhatsApp bereikbaar.</p>
+
+  <!-- Contextblok: wordt door het script gevuld op basis van de opgevraagde URL -->
+  <div class="card ctx" id="ctx"><h2 id="ctx-title"></h2><p id="ctx-text"></p></div>
+
+  <div class="card alert">
+    <h2>Acute nood?</h2>
+    <p>Bel bij direct gevaar <strong>112</strong>. Denk je aan zelfdoding? Bel <a href="tel:0800-0113">0800-0113</a> of chat via <a href="https://www.113.nl" rel="noopener">113.nl</a>. Neem bij een crisis buiten kantoortijd contact op met de huisartsenpost.</p>
+  </div>
+
+  <div class="card">
+    <h2>Contact</h2>
+    <p>
+      <a class="btn" href="https://wa.me/31652624397">Stel een vraag via WhatsApp</a>
+      <a class="btn" href="tel:+31402110311">Bel ons: 040 211 0311</a>
+    </p>
+    <p class="muted">Bereikbaar op werkdagen van 8.30 tot 18.00 uur.</p>
+  </div>
+
+  <div class="card">
+    <h2>Volg ons</h2>
+    <p>
+      <a href="https://www.instagram.com/yeswecanclinics" rel="noopener">Instagram</a> ·
+      <a href="https://www.linkedin.com/company/yes-we-can-clinics/" rel="noopener">LinkedIn</a> ·
+      <a href="https://www.facebook.com/YesWeCanClinics" rel="noopener">Facebook</a> ·
+      <a href="https://www.youtube.com/user/YesWeCanClinics" rel="noopener">YouTube</a>
+    </p>
+  </div>
+
+  <p class="muted" id="req"></p>
+</main>
+
+<footer>Yes We Can Clinics is onderdeel van <a href="https://www.yeswecanhealthcaregroup.nl" rel="noopener">Yes We Can Healthcare Group</a></footer>
+
+<script>
+(function () {
+  // Diepe URL's komen via de server-rewrite op deze pagina binnen.
+  // Hier tonen we passende uitleg op basis van het pad.
+  var path = (location.pathname || "/").toLowerCase().replace(/\/+$/, "") || "/";
+
+  var routes = [
+    { m: /^\/(aanmelden|intake|plan-een-belafspraak-in|actuele-wachttijden|inclusiecriteria)/,
+      t: "Aanmelden of vragen over wachttijden",
+      x: "Aanmelden via de website kan tijdelijk niet. Neem contact met ons op via WhatsApp of telefoon, dan helpen we je verder." },
+    { m: /^\/portaal/,
+      t: "Portaal voor fellows",
+      x: "Het portaal is tijdelijk niet bereikbaar via de website. Heb je iets nodig? Neem contact op met je behandelaar of met ons via WhatsApp." },
+    { m: /^\/(klachten|klachtenreglement|feedback)/,
+      t: "Klacht of feedback",
+      x: "Je kunt je klacht of feedback op dit moment doorgeven via WhatsApp of telefoon. Je melding wordt gewoon in behandeling genomen." },
+    { m: /^\/werken-bij/,
+      t: "Werken bij Yes We Can Clinics",
+      x: "Onze vacatures zijn tijdelijk niet online. Interesse? Stuur ons een bericht, we nemen contact met je op." },
+    { m: /^\/(algemene-informatie|jeugdzorgregios|yes-were-back|media-contact)/,
+      t: "Voor verwijzers en professionals",
+      x: "Verwijzen of overleggen kan gewoon. Neem telefonisch contact met ons op." },
+    { m: /^\/(updates-en-ontwikkelingen|next|artikel\/igj)/,
+      t: "Updates en kwaliteitsprogramma",
+      x: "Deze informatie is tijdelijk niet online. Zodra de website terug is, vind je hier weer alle updates." }
+  ];
+
+  for (var i = 0; i < routes.length; i++) {
+    if (routes[i].m.test(path)) {
+      document.getElementById("ctx-title").textContent = routes[i].t;
+      document.getElementById("ctx-text").textContent = routes[i].x;
+      document.getElementById("ctx").style.display = "block";
+      break;
+    }
+  }
+
+  if (path !== "/" && path !== "/index.html") {
+    document.getElementById("req").textContent =
+      "De pagina die je zocht (" + decodeURIComponent(location.pathname) + ") is tijdelijk niet beschikbaar.";
+  }
+})();
+</script>
+</body>
+</html>
